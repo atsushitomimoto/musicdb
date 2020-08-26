@@ -1,0 +1,185 @@
+/* aタグの上書き */
+a {
+    color: #03b;
+}
+a:visited {
+    color: #98158b;
+}
+
+/* カードのスタイル上書き */
+.card {
+    width: 150px;
+    padding: 0;
+    margin: 10px;
+}
+
+/* ナビゲーションのドロップダウン上書き */
+nav .dropdown-menu {
+    top: 3.5rem !important;
+    padding-top: .312rem;
+    background-color: #000;
+}
+nav .dropdown-item {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: 1.125rem;
+    padding-right: 0rem;
+}
+nav .dropdown-toggle::after {
+    color: #ccc !important;
+}
+nav .dropdown-toggle:hover::after {
+    color: #fff !important;
+}
+nav .dropdown-item i, nav .navbar-collapse i{
+    padding-right: 1.75rem;
+}
+nav .dropdown-item:hover{
+    color: #4DD2FF !important;
+    text-decoration: underline;
+    background-color: #000 !important;
+}
+nav .nav-item.show {
+    background-color: #000;
+}
+
+/* text-black */
+.text-black {
+    color: #212529 !important;
+}
+a.text-black:focus, a.text-black:hover {
+    color: #212529 !important;
+}
+
+/* footer */
+.footer {
+    background-color: #f8f9fa;
+}
+
+/* outline none */
+.outline-none a {
+    outline: none !important;
+}
+
+/* right 32px */
+.right-32 {
+    right: 32px;
+}
+
+/* paddingRight-32px */
+.pr-32 {
+    padding-right: 32px;
+}
+
+/* Contents-Size auto */
+.size-auto {
+    width: auto;
+    height: auto;
+}
+
+/* Contents-Size 150x150 px */
+.size-150px {
+    width: 150px;
+    height: 150px;
+}
+
+/* Contents-MaxWidth 100 px */
+.maxwidth-100px {
+    max-width: 100px;
+}
+
+/* Contents-MaxWidth 300 px */
+.maxwidth-300px {
+    max-width: 300px;
+}
+
+/* Contents-MaxSize 150x150 px */
+.maxsize-150px {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+/* Margin X -10px */
+.mx-minus10px {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+/* noimageの画像処理 */
+.noimage {
+    color: #9b9b9b !important;
+    background-color: #e6eaed;
+}
+.noimage i {
+    font-size: 7rem;
+    pointer-events: none;
+}
+
+/* 要素の中央寄せ（親） */
+.centering-outer {
+    position: relative;
+}
+
+/* 要素の中央寄せ（子） */
+.centering-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+/* a hrefのリンク範囲拡張 */
+.link-expantion {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.cssgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
+    grid-gap: 0.8em;
+    border: 1px solid #ddd;
+    padding: 0.8em;
+    margin: 0 0 2em;
+}
+
+.cssgrid > div {
+background: #ddd;
+overflow: auto;
+min-width: 0;
+padding: 1em;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    /* navbarを上部に固定 */
+    .navbar {
+        position: absolute;
+    }
+    /* 検索バーの幅調整（苦し紛れ、いい方法あったら教えて） */
+    .navbar-Search-Width {
+        width: calc(100% - 57px) !important;
+    }
+    
+    .navbar-Search-Width input {
+        max-width: none;
+    }
+    
+    nav .navbar-collapse.show a:hover{
+        color: #4DD2FF !important;
+        text-decoration: underline;
+    }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .navbar {
+        height: 3.5rem;
+    }
+
+    nav .nav-link i {
+        display: none;
+    }
+}
