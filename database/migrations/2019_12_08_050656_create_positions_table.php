@@ -16,9 +16,7 @@ class CreatePositionsTable extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('release_id')->comment('リリースID');
-            // $table->unsignedInteger('track_id')->comment('楽曲ID');
             $table->string('type')->comment('種類');
-            // [種類] トラック:track 見出し:head 索引:index サブトラック:subtrack
             $table->unsignedInteger('order')->comment('表示順');
             $table->unsignedInteger('number')->nullable()->comment('ディスク順');
             $table->string('position')->nullable()->comment('曲順');
@@ -27,9 +25,8 @@ class CreatePositionsTable extends Migration
             $table->string('artist')->nullable()->comment('アーティスト名');
             $table->string('length')->nullable()->comment('長さ');
             $table->timestamps();
-            // 外部キー制約
+            // 外部キー
             $table->foreign('release_id')->references('id')->on('releases')->onDelete('cascade');
-            // $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
         });
     }
 

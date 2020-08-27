@@ -68,11 +68,6 @@
             <div class="centering-outer size-150px border shadow-sm">
                 <img class="card-img-top rounded-0 size-auto centering-inner maxsize-150px" src="{{URL::asset($item->image)}}" alt="{{$item->title}}" decoding="async">
             </div>
-        @else
-            {{-- 画像がない場合 --}}
-            {{-- <div class="centering-outer size-150px border shadow-sm noimage">
-                <i class="centering-inner fas fa-compact-disc"></i>
-            </div> --}}
         @endif
         </div>
         <div class="col-sm-5 mb-4">

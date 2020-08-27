@@ -28,6 +28,6 @@ class UserRequest extends FormRequest
             'email' => 'email|required|unique:users,email|max:100',
             'password' => 'required|min:6|max:127|confirmed',
             'password_confirmation' => 'required',
-        ]; //filled フィールドが存在する場合、空でないことをバリデート
+        ];
     }
 }

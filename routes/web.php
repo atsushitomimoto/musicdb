@@ -11,17 +11,15 @@
 |
 */
 
-//Indexコントローラの__invoke
 Route::get('/', 'IndexController')->name('home');
 
 // ゲストユーザーが閲覧可能
 Route::middleware(['guest'])->group(function () {
     Route::name('user.')->group(function () {
-        //会員登録
+        // 会員登録
         Route::get('/register', 'UserController@getRegister')->name('register');
         Route::post('/register', 'UserController@postRegister')->name('register');
-
-        //ログイン
+        // ログイン
         Route::get('/login', 'UserController@getLogin')->name('login');
         Route::post('/login', 'UserController@postLogin')->name('login');
     });
@@ -30,34 +28,30 @@ Route::middleware(['guest'])->group(function () {
 // ログイン済みユーザーが閲覧可能
 Route::middleware(['auth'])->group(function () {
     Route::name('user.')->group(function () {
-        //プロフィール
+        // プロフィール
         Route::get('/profile', 'UserController@getProfile')->name('profile');
-        //設定
+        // 設定
         Route::get('/setting', 'UserController@getSetting')->name('setting');
-        //ログアウト
+        // ログアウト
         Route::get('/logout', 'UserController@getLogout')->name('logout');
     });
 
     Route::name('release.')->group(function () {
-        //releaseの作成
+        // releaseの作成
         Route::get('/release/add', 'ReleaseController@add')->name('add');
-        //releaseのDB登録
+        // releaseのDB登録
         Route::post('/release/add', 'ReleaseController@create')->name('add');
-    
-        //releaseの編集
+        // releaseの編集
         Route::get('/release/{id}/edit', 'ReleaseController@edit')->name('edit');
-        //releaseのDB更新
+        // releaseのDB更新
         Route::patch('/release/{id}/edit', 'ReleaseController@update')->name('edit');
-    
-        //releaseの削除
+        // releaseの削除
         Route::get('/release/{id}/delete', 'ReleaseController@del')->name('delete');
-        //releaseのDB削除
+        // releaseのDB削除
         Route::delete('/release/{id}/delete', 'ReleaseController@remove')->name('delete');
     });
 });
 
-//Searchを表示
 Route::get('/search', 'SearchController')->name('search.show');
 
-//releaseを表示
 Route::get('/release/{id}', 'ReleaseController@show')->name('release.show');

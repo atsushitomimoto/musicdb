@@ -12,9 +12,7 @@ class Common {
             // 画像が複数登録できるようになるまでは、この仕様を継続する
             $release = deleteimage($release);
         }
-        //画像の保存
         $path = $request->image->store('public/img');
-        //画像パスの登録
         $release->image = str_replace('public/', 'storage/', $path);
         return $release;
     }

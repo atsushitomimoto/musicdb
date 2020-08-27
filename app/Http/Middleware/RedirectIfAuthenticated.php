@@ -17,8 +17,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        // 認証済みユーザーの場合弾く
         if (Auth::guard($guard)->check()) {
-            // 認証済みユーザーの場合indexへリダイレクト
             return redirect('/');
         }
 

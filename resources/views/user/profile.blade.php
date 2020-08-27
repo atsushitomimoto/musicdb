@@ -1,4 +1,3 @@
-{{-- template/base.blade.phpを親レイアウトとして継承 --}}
 @extends('template.base')
 
 @section('title','プロフィール') 

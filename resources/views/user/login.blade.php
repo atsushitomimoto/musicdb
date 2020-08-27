@@ -1,4 +1,3 @@
-{{-- template/base.blade.phpを親レイアウトとして継承 --}}
 @extends('template.base')
 
 @section('title','ログイン') 
@@ -32,9 +31,9 @@
         </div>
     </div>        
     <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-    <button type="submit" class="btn btn-primary btn-block">ログイン</button>
+        <div class="col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-primary btn-block">ログイン</button>
+        </div>
     </div>
-    <!--/form-group--></div>
 </form>
 @endsection

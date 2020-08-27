@@ -23,7 +23,6 @@ class ReleaseRequest extends FormRequest
      */
     public function rules()
     {
-        //送信されたreleaseをバリデーションで検証
         return [
             'title' => 'required|max:500',
             'artist' => 'max:300',

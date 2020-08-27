@@ -11,20 +11,16 @@
         @endif
         musicdb
     </title>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Font Awesome5 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-
     <!-- CSS -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/sticky-footer.css')}}" rel="stylesheet" type="text/css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="{{asset('js/ex01.js')}}"></script>
-    <!-- なんやろ -->
-    {{-- <link rel="stylesheet" href="{{ mix('/css/app.css') }}"> --}}
 </head>
 <body class="d-flex flex-column" style="padding-top:3.5rem;">
     <div id="app">
@@ -147,10 +143,8 @@
             </div>
         </footer>
         <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
-        {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script> --}}
         <!-- Vue.js -->
         <script src="{{ mix('js/app.js') }}"></script>
     </div>

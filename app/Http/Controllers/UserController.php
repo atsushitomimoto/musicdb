@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;    //Eloquent
+//Eloquent
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -13,10 +14,10 @@ class UserController extends Controller
         return view('user.register');
     }
 
-    // 新規登録の処理
+    // 新規登録処理
     public function postRegister(Request $request){
         // TODO バリデーションのメッセージが英語だしリクエスト用意すんのもあり
-        // TODO できたらメール認証にしたい
+        // TODO メール認証にしたい
 
         // バリデーション
         $this->validate($request,[
@@ -25,13 +26,6 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'password_confirmation' => 'required',
         ]);
-
-        // DBインサート
-        // $user = new User([
-        //     'name' => $request->input('name'),
-        //     'email' => $request->input('email'),
-        //     'password' => bcrypt($request->input('password')),
-        // ]);
 
         $user = new User;
 
@@ -64,13 +58,13 @@ class UserController extends Controller
         ]);
         
         if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
-            // ログイン
+            // ログイン完了
             return redirect()->intended('/');
         }
         return redirect()->back();
     }
 
-    //ログアウト
+    // ログアウト
     public function getLogout(){
         // 元のページへリダイレクト
         if (isset($_SERVER['HTTP_REFERER'])) {

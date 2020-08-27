@@ -18,47 +18,40 @@ use App\Position;
 
 class ReleaseController extends Controller
 {
-    // リクエストを受けたreleaseを表示
     public function show($id){
         // releaseの存在確認
         if (Release::where('id',$id)->exists()) {
             $item = Release::find($id);
         } else {
-            // releaseが存在しない場合indexへリダイレクト
             return redirect('/');
         }
 
         // 曲順の取得
         $positions = Position::where('release_id',$item->id)->orderBy('order')->get();
         
-        // 曲順が存在するか？
         if ($positions->count() > 0){
             $show_positions = true;
         } else {
             $show_positions = false;
         }
 
-        // artistがNULLのデータを除外
-        $notnull_artist_positions = Position::where('release_id',$item->id)->whereNotNull('artist')->get();
-        
-        // アルバムアーティストと異なるアーティストが存在するか？
-        if ($notnull_artist_positions->whereNotIn('artist',$item->artist)->count() > 0) {
+        // アルバムアーティストと異なるアーティストが存在する場合、アーティスト欄を表示
+        $positions_artist = Position::where('release_id',$item->id)->whereNotNull('artist')->get();
+        if ($positions_artist->whereNotIn('artist',$item->artist)->count() > 0) {
             $show_artist = true;
         } else {
             $show_artist = false;
         }
 
-        // lengthがNULLのデータを除外
-        $notnull_length_positions = Position::where('release_id',$item->id)->whereNotNull('length')->get();
-
-        // releaseまたはpositionsのlengthにデータが存在するか？
-        if ($item->length || $notnull_length_positions->count() > 0) {
+        // lengthが存在する場合、再生時間欄を表示
+        $positions_length = Position::where('release_id',$item->id)->whereNotNull('length')->get();
+        if ($item->length || $positions_length->count() > 0) {
             $show_length = true;
         } else {
             $show_length = false;
         }
 
-        // releaseにlengthが存在するか？
+        // 総再生時間を算出
         if ($item->length) {
             $total_length = $item->length;
         } else {
@@ -69,39 +62,31 @@ class ReleaseController extends Controller
         return view('release.show',compact('item','positions','total_length','show_positions','show_artist','show_length'));
     }
 
-    // releaseの作成
     public function add(){
         $msg = 'Releaseを新規登録します。';
         return view('release.add',compact('msg'));
     }
 
-    // 作成したreleaseをDBに登録
     public function create(ReleaseRequest $request){
-        // Releaseオブジェクト生成
         $release = new Release;
 
-        //値の登録
         $release->title = $request->title;
         $release->artist = $request->artist;
 
         $release = Common::saveImage($request, $release);
 
-        //DB登録
         $release->save();
         
-        // アラート表示
         session()->flash('alert_success',$request->title.' を追加しました。');
 
         return redirect()->route('release.show',['id' => $release->id]);
     }
 
-    // releaseの編集
     public function edit($id,Request $request){
         // releaseの存在確認
         if (Release::where('id',$id)->exists()) {
             $item = Release::find($id);
         } else {
-            // releaseが存在しない場合indexへリダイレクト
             return redirect('/');
         }
         $msg = 'Releaseを編集します。';
@@ -110,10 +95,8 @@ class ReleaseController extends Controller
 
     // 編集したreleaseのDB更新
     public function update(ReleaseRequest $request){
-        // Releaseオブジェクト生成
         $release = Release::findOrFail($request->id);
 
-        //値の登録
         $release->title = $request->title;
         $release->artist = $request->artist;
 
@@ -127,33 +110,26 @@ class ReleaseController extends Controller
             }
         }
         
-        //DB登録
         $release->save();
 
-        // アラート表示
         session()->flash('alert_success',$request->title.' を更新しました。');
         
         return redirect()->route('release.show',['id' => $release->id]);
     }
 
-    // releaseの削除確認
     public function del($id,Request $request){
         // releaseの存在確認
         if (Release::where('id',$id)->exists()) {
             $item = Release::find($id);
         } else {
-            // releaseが存在しない場合indexへリダイレクト
             return redirect('/');
         }
         $msg = 'を削除します。';
         return view('release.delete',compact('item','msg'));
     }
 
-    // releaseのDB削除
     public function remove(Request $request){
-        // 画像を削除
         $release = Common::deleteImage($release);
-        // レコードを削除
         Release::destroy($request->id);
 
         if ($request->artist) {
@@ -162,7 +138,6 @@ class ReleaseController extends Controller
             $delete_name = $request->title;
         }
 
-        // アラート表示
         session()->flash('alert_success',$request->title.' を削除しました。');
 
         return redirect()->route('search.show');

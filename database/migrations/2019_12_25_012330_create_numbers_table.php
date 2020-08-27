@@ -17,7 +17,6 @@ class CreateNumbersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('release_id')->comment('リリースID');
             $table->unsignedInteger('number')->nullable()->comment('ディスク順');
-            // 考え中
             $table->timestamps();
         });
     }
